@@ -8,11 +8,18 @@ urlpatterns = [
 ]
 """
 from django.urls import path
+from django.contrib.auth.views import LoginView, LogoutView
 from . import views
 
 urlpatterns = [
+    # Registration (still custom)
     path("register/", views.register_view, name="register"),
-    path("login/", views.login_view, name="login"),
-    path("logout/", views.logout_view, name="logout"),
+
+    # Login using Django's built-in class-based view
+    path("login/", LoginView.as_view(template_name="relationship_app/login.html"), name="login"),
+
+    # Logout using Django's built-in class-based view
+    path("logout/", LogoutView.as_view(template_name="relationship_app/logout.html"), name="logout"),
 ]
+
 
